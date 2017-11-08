@@ -53,6 +53,8 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'icymind/NeoSolarized'
 " A nice theme more
 Plugin 'morhetz/gruvbox'
+" To learn to write english
+Plugin 'reedes/vim-wordy'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -242,7 +244,8 @@ let g:ycm_open_loclist_on_ycm_diags = 1
 
 let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python3.6'
+let g:ycm_server_python_interpreter = '/usr/bin/python3.6'
 
 
 let g:ycm_server_use_vim_stdout = 0 " logging to console
