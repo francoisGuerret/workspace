@@ -33,8 +33,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'flazz/vim-colorschemes'
 " Tabular
 Plugin 'godlygeek/tabular'
-" Markdown support
-Plugin 'plasticboy/vim-markdown'
+" Markdown support. Unused. Use Pandoc syntax instead
+" Plugin 'plasticboy/vim-markdown'
 " Vimwiki
 Plugin 'https://github.com/vimwiki/vimwiki'
 " Generation of Doxygen comments :Dox
@@ -54,7 +54,10 @@ Plugin 'icymind/NeoSolarized'
 " A nice theme more
 Plugin 'morhetz/gruvbox'
 " To learn to write english
-Plugin 'reedes/vim-wordy'
+" Plugin 'reedes/vim-wordy'
+" For Pandoc support
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
