@@ -319,6 +319,8 @@ nmap <F3> :s/\\/\//g<CR> :s/X:/\/x/g<CR>
 nmap <F4> :call ToggleBackground()<CR>
 " YCM
 nmap <F10> :YcmForceCompileAndDiagnostics<CR>
+" Eovim full screen
+nnoremap <F11> :call Eovim("sizing", {'aspect': 'fullscreen_toggle'})<CR>
 " switch diffof diffon
 nmap <A-d>  :if &diff<CR>diffoff<CR>set nocrb<CR>else<CR>diffthis<CR>endif<CR><CR>
 
