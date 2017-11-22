@@ -5,9 +5,7 @@ installation of a decent work environment.
 
 ## Setup
 
-To setup the environment:
-
-Install:
+To setup the environment, run `setup.sh` and install:
   * python3
   * ack (package `ack` or `perl-ack`)
   * vim or better neovim (see [this nice gui][evoim])
