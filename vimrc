@@ -53,8 +53,6 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'icymind/NeoSolarized'
 " A nice theme more
 Plugin 'morhetz/gruvbox'
-" To learn to write english
-" Plugin 'reedes/vim-wordy'
 " For Pandoc support
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
@@ -119,7 +117,7 @@ set shiftwidth=2
 set expandtab
 set textwidth=80
 set encoding=utf8
-" Ctrl-C 
+" Ctrl-C
 set clipboard=unnamedplus
 " Fold method
 set foldmethod=indent
@@ -127,10 +125,10 @@ set foldmethod=indent
 set foldlevelstart=20
 " to see the current line
 "set cursorline
-" to see the current column 
+" to see the current column
 "set cursorcolumn
 " Activate spell
-set spell
+" set spell
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " All about theme and colors
@@ -212,6 +210,15 @@ nmap <C-Q> :highlight clear OverLength<CR>
 match OverLength /\%81v.\+/
 " Highlight 81 comlumn
 let &colorcolumn="81"
+
+"""""""""" Highlight traling white space
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugins configuration
