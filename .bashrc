@@ -3,14 +3,14 @@ export VISUAL=vim
 
 function mkcd {
 	mkdir ${1} && cd ${1}
-} 
+}
 
 function gv {
-	eovim -F -O "$@" &
+	eovim -O "$@" &
 }
 
 function gvf {
-	eovim -F -O $(find . -name "$1") &
+	eovim -O $(find . -name "$1") &
 }
 
 alias f="find . -name"
