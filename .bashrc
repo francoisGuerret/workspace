@@ -1,28 +1,22 @@
-export EDITOR=eovim
+export EDITOR=vim
 export VISUAL=vim
 
 function mkcd {
-	mkdir ${1} && cd ${1}
+  mkdir ${1} && cd ${1}
 }
 
-function gv {
-	eovim -O "$@" &
+function v {
+  vim -O $@ &
 }
 
-function gvf {
-	eovim -O $(find . -name "$1") &
+function vf {
+  vim -O $(find . -name "$1") &
 }
 
 alias f="find . -name"
-alias gr="grep -r -n"
 alias g="git"
 alias ll="ls -lA"
 alias l="ls --color"
-alias c.="cd .."
-alias c..="cd ../.."
-alias c...="cd ../../.."
-alias c....="cd ../../../.."
-alias c.....="cd ../../../../.."
 
 #########################
 # PS1

@@ -9,56 +9,20 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 
 call vundle#begin('~/.vim/bundle')
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-" git in vim
+" Git in vim
 Plugin 'tpope/vim-fugitive'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" fast html edition
-Plugin 'rstacruz/sparkup', {'rtp': 'vim'}
-" Syntactic
-" Plugin 'scrooloose/syntastic'
-Plugin 'valloric/youcompleteme'
 " NERDTree
 Plugin 'scrooloose/nerdtree'
-"taglist
-Plugin 'taglist.vim'
-" CTRLP
-Plugin 'ctrlpvim/ctrlp.vim'
-" All possible colorschemes
-Plugin 'flazz/vim-colorschemes'
-" Tabular
-Plugin 'godlygeek/tabular'
-" Markdown support. Unused. Use Pandoc syntax instead
-" Plugin 'plasticboy/vim-markdown'
-" Vimwiki
+" For notes
 Plugin 'https://github.com/vimwiki/vimwiki'
-" Generation of Doxygen comments :Dox
-Plugin 'DoxygenToolkit.vim'
-" Colors in doxygen comments
-Plugin 'DoxyGen-Syntax'
-" Full screen for windows
-"Plugin 'kkoenig/wimproved.vim'
-" ack in vim
-Plugin 'ack.vim'
-" For Bison and flex
-Plugin 'justinmk/vim-syntax-extra'
-" No distraction mode
-Plugin 'junegunn/goyo.vim'
-" Fixed solarized theme
-Plugin 'icymind/NeoSolarized'
-" A nice theme more
-Plugin 'morhetz/gruvbox'
-" For Pandoc support
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+" ALE for linting completion and so on
+Plugin 'dense-analysis/ale'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+" All Plugins must be added before the following line
+call vundle#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Git message edition
@@ -89,10 +53,6 @@ endif " has("autocmd")
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 filetype plugin indent on
-" flex
-autocmd BufRead,BufNewFile *.ll,*.fl,*.flex,*.l,*.lm setlocal ft=lex
-" bison
-autocmd BufRead,BufNewFile *.yy,*.y,*.ypp,*.ym setlocal ft=yacc
 " Use parenthesis for indentation
 autocmd BufRead,BufNewFile *.c,*.cpp,*.h,*.hpp setlocal cino=(0,W2s,>0
 
@@ -123,73 +83,11 @@ set clipboard=unnamedplus
 set foldmethod=indent
 "set foldmethod=syntax
 set foldlevelstart=20
-" to see the current line
-"set cursorline
-" to see the current column
-"set cursorcolumn
-" Activate spell
-" set spell
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " All about theme and colors
-
-" set ligth theme
-function! Light()
-  set background=light
-  colorscheme NeoSolarized
-endfunction
-
-" set dark theme
-function! Dark()
-  set background=dark
-  colorscheme gruvbox
-endfunction
-
-" A cursor I can see
-function! MyCursor()
-  highlight Cursor guifg=white guibg=steelblue
-  highlight iCursor guifg=red guibg=red
-  set guicursor=n-v-c:block-Cursor
-  set guicursor+=i:ver20-iCursor
-endfunction
-
-" Status Bar color
-function! MyStatusLine()
-  hi User1 guifg=#eea040 guibg=#222222
-  hi User2 guifg=#dd3333 guibg=#222222
-  hi User3 guifg=#ff66ff guibg=#222222
-  hi User4 guifg=#a0ee40 guibg=#222222
-  hi User5 guifg=#eeee40 guibg=#222222
-endfunction
-
-" Light theme if sunny hour
-let s:time = strftime("%H")
-let s:islight = (s:time > 11 && s:time < 17 ? 1 : 0)
-
-" Entry point to set the colorscheme
-function! SetBackground()
-  if s:islight
-    call Light()
-  else
-    call Dark()
-  endif
-  call MyCursor()
-  call MyStatusLine()
-  " Fonts
-  " set guifont=Free\ Mono\ Regular\ 10
-endfunction
-
-" At start
-" eovim do not set gui_running yet
-"if has('gui_running')
-call SetBackground()
-" endif
-
-" To toggle colorscheme
-function! ToggleBackground()
-  let s:islight = (s:islight ? 0 : 1)
-  call SetBackground()
-endfunction*
+set background=dark
+colorscheme darkblue
 
 """"" display time date in the editor status line
 set statusline=
@@ -224,16 +122,6 @@ autocmd BufWinLeave * call clearmatches()
 " Plugins configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" CTRL-P
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-set runtimepath^=~/.vim/bundle
-set runtimepath^=~/.vim
-set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn)|doc|build)$',
-  \ 'file': '\v\.(exe|so|dll|obj|sbr|o|pyc)$',
-  \ }
-
 " The simplest gvim windows possible please
 if has("gui_running")
   set go-=T
@@ -243,55 +131,8 @@ endif
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
-" You complete me
-let g:ycm_register_as_syntastic_checker = 1
-let g:Show_diagnostics_ui = 1
-let g:ycm_enable_diagnostic_signs = 1
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_always_populate_location_list = 1
-let g:ycm_open_loclist_on_ycm_diags = 1
-
-
-let g:ycm_complete_in_strings = 1
-let g:ycm_collect_identifiers_from_tags_files = 0
-let g:ycm_path_to_python_interpreter = '/usr/bin/python3.6'
-let g:ycm_server_python_interpreter = '/usr/bin/python3.6'
-
-
-let g:ycm_server_use_vim_stdout = 0 " logging to console
-let g:ycm_server_log_level = 'info'
-
-
-" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-" let g:ycm_confirm_extra_conf = 1
-
-
-let g:ycm_goto_buffer_command = 'same-buffer' "[ 'same-buffer', 'horizontal-split', 'vertical-split', 'new-tab' ]
-let g:ycm_filetype_whitelist = { '*': 1 }
-let g:ycm_key_invoke_completion = '<C-Space>'
-
-" Doxygen syntax
-let g:load_doxygen_syntax = 1
-let g:doxygen_enhanced_colour = 0
-
-" Doxygen toolkit
-let g:DoxygenToolkit_briefTag_pre         = "\\brief TODO"
-let g:DoxygenToolkit_templateParamTag_pre = "\\tparam "
-let g:DoxygenToolkit_paramTag_pre         = "\\param "
-let g:DoxygenToolkit_returnTag            = "\\return "
-let g:DoxygenToolkit_throwTag_pre         = "\\throw "
-let g:DoxygenToolkit_fileTag              = "\\file "
-let g:DoxygenToolkit_authorTag            = "\\author "
-let g:DoxygenToolkit_dateTag              = "\\date "
-let g:DoxygenToolkit_versionTag           = "//version "
-let g:DoxygenToolkit_blockTag             = "\\name "
-let g:DoxygenToolkit_classTag             = "\\class "
-let g:DoxygenToolkit_startCommentTag      = "/*! "
-let g:DoxygenToolkit_startCommentBlock    = "/* "
-let g:DoxygenToolkit_compactDoc           = "yes"
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" map leader
+" map leader (for vimwiki among others)
 let mapleader=","
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -314,28 +155,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" others remappings
-
-nmap <C-s> :silent! execute ":%s/\\s\\+$//g"<CR> :w<CR>
-nmap <C-e> :lnext<CR>
-imap <C-s> <Esc>:silent! execute ":%s/\\s\\+$//g"<CR> :w<CR>
 " remove whitespaces
-nmap <F1> :execute ":%s/\\s\\+$//g"<CR>
+nmap dsds :execute ":%s/\\s\\+$//g"<CR>
 " windows path to normal path
-nmap <F3> :s/\\/\//g<CR> :s/X:/\/x/g<CR>
-" switch colorschem light/dark
-nmap <F4> :call ToggleBackground()<CR>
-" YCM
-nmap <F7> :YcmCompleter GetType<CR>
-nmap <F8> :YcmCompleter GoToDeclaration<CR>
-nmap <F9> :YcmCompleter GoToDefinition<CR>
-nmap <F10> :YcmForceCompileAndDiagnostics<CR>
-" Eovim full screen
-nnoremap <F11> :call Eovim("sizing", {'aspect': 'fullscreen_toggle'})<CR>
-" switch diffof diffon
-nmap <A-d>  :if &diff<CR>diffoff<CR>set nocrb<CR>else<CR>diffthis<CR>endif<CR><CR>
-
-" to get out of terminal mode
-:tnoremap <Esc> <C-\><C-n>
+nmap ppp :s/\\/\//g<CR> :s/X:/\/x/g<CR>
 
 " Zatsall

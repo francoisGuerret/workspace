@@ -1,22 +1,17 @@
 # workspace
 
 This repository is used to store some useful configuration files to hasten the
-installation of a decent work environment.
+installation of a decent working environment.
 
 ## Setup
 
-To setup the environment, run `setup.sh` and install:
+To setup the environment, run `setup.sh` and install the following packages
+with your package manager (if they are available of course):
+
   * python3
-  * ack (package `ack` or `perl-ack`)
-  * vim or better neovim (see [this nice gui][evoim])
-  * if neovim is installed, add `source PATH_TO_VIMRC` in
-    `$HOME/.config/nvim/init.vim`
-  * in `~/.vim` install [Vundle][vundle]
-  * in vim: source `vimrc` and run `PluginInstall`
-  * install youcompleteme downloaded at previous step (read the README of the
-    plugin!)
+  * ripgrep (for a faster grep utils)
+  * teminator
+  * vim
 
-## Links
-
-[vundle]: https://github.com/VundleVim/Vundle.vim
-[eovim]: https://github.com/jeanguyomarch/eovim
+Then open vim, source the installed `~/.vim/vimrc`if not automatically done and
+run `:PluginInstall`.
