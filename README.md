@@ -11,7 +11,13 @@ with your package manager (if they are available of course):
   * python3
   * ripgrep (for a faster grep utils)
   * teminator
-  * vim
+  * vim-gtk (for gvim, better clipboard management and so on)
 
-Then open vim, source the installed `~/.vim/vimrc`if not automatically done and
+For debian eg, just run:
+
+```
+sudo apt install git python3 ripgrep terminator vim-gtk3 && ./setup.sh
+``̀`
+
+Then open vim, source the installed `~/.vim/vimrc` if not automatically done and
 run `:PluginInstall`.

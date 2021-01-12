@@ -87,7 +87,7 @@ set foldlevelstart=20
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " All about theme and colors
 set background=dark
-colorscheme darkblue
+colorscheme desert
 
 """"" display time date in the editor status line
 set statusline=
@@ -157,7 +157,9 @@ nnoremap <C-H> <C-W><C-H>
 
 " remove whitespaces
 nmap dsds :execute ":%s/\\s\\+$//g"<CR>
-" windows path to normal path
-nmap ppp :s/\\/\//g<CR> :s/X:/\/x/g<CR>
+
+" md/rst: add "`" around the current word (between two spaces)
+imap £ <Esc>ciW``<Esc>P<Space>a
+nmap £ ciW``<Esc>P<Space>a
 
 " Zatsall
