@@ -13,7 +13,7 @@
   pll     = pull --rebase
   co      = checkout
   ci      = commit
-  b       = branch
+  b       = branch --sort=committerdate
   st      = status -s
   rb      = rebase
   fetcha  = fetch --all --prune
@@ -21,6 +21,8 @@
   diffn   = diff --name-only
   a       = add
   aa      = add --all
+  chp     = cherry-pick
+  s       = show --compact-summary
 
 [core]
   editor = vim
@@ -39,3 +41,9 @@
 
 [push]
   default = current
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f

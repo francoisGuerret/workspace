@@ -28,8 +28,6 @@ run `:PluginInstall`.
 
 ### Setup with neovim
 
-Install `neovim`, copy `init.lua` in `${HOME}/.config/nvim/`.
+Install `neovim`, copy `nvim` in `${HOME}/.config/nvim`.
 Open Neovim and install/update plugins with `:Lazy`.
 Open Neovim and install via `:Mason` your favorite linters and parsers.
-
-TODO : rerun from scratch
